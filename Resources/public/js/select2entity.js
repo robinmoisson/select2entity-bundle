@@ -5,12 +5,8 @@ $(document).ready(function () {
       ajax: {
         data: function (params) {
           return {
-            q: params.term
-          };
-        },
-        processResults: function (data) {
-          return {
-            results: data
+            q: params.term,
+            page: params.page || 1
           };
         }
       }
