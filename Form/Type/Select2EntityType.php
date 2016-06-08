@@ -2,6 +2,7 @@
 
 namespace Tetranz\Select2EntityBundle\Form\Type;
 
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataTransformerInterface;
@@ -21,8 +22,8 @@ use Tetranz\Select2EntityBundle\Form\DataTransformer\EntityToPropertyTransformer
  */
 class Select2EntityType extends AbstractType
 {
-    /** @var EntityManagerInterface */
-    protected $em;
+    /** @var Registry */
+    protected $doctrine;
     /** @var Router */
     protected $router;
     /** @var  integer */
@@ -39,7 +40,7 @@ class Select2EntityType extends AbstractType
     protected $cache;
 
     /**
-     * @param EntityManagerInterface $em
+     * @param Registry $doctrine
      * @param RouterInterface $router
      * @param integer $minimumInputLength
      * @param integer $pageLimit
@@ -48,9 +49,9 @@ class Select2EntityType extends AbstractType
      * @param string $language
      * @param boolean $cache
      */
-    public function __construct(EntityManagerInterface $em, RouterInterface $router, $minimumInputLength, $pageLimit, $allowClear, $delay, $language, $cache)
+    public function __construct(Registry $doctrine, RouterInterface $router, $minimumInputLength, $pageLimit, $allowClear, $delay, $language, $cache)
     {
-        $this->em = $em;
+        $this->doctrine = $doctrine;
         $this->router = $router;
         $this->minimumInputLength = $minimumInputLength;
         $this->pageLimit = $pageLimit;
@@ -62,6 +63,8 @@ class Select2EntityType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $em = $this->doctrine->getEntityManager($options['entity_manager']);
+
         // add custom data transformer
         if ($options['transformer']) {
             if (!is_string($options['transformer'])) {
@@ -71,7 +74,7 @@ class Select2EntityType extends AbstractType
                 throw new \Exception('Unable to load class: '.$options['transformer']);
             }
 
-            $transformer = new $options['transformer']($this->em, $options['class']);
+            $transformer = new $options['transformer']($em, $options['class']);
 
             if (!$transformer instanceof DataTransformerInterface) {
                 throw new \Exception(sprintf('The custom transformer %s must implement "Symfony\Component\Form\DataTransformerInterface"', get_class($transformer)));
@@ -80,8 +83,8 @@ class Select2EntityType extends AbstractType
         // add the default data transformer
         } else {
             $transformer = $options['multiple']
-                ? new EntitiesToPropertyTransformer($this->em, $options['class'], $options['text_property'], $options['primary_key'])
-                : new EntityToPropertyTransformer($this->em, $options['class'], $options['text_property'], $options['primary_key']);
+                ? new EntitiesToPropertyTransformer($em, $options['class'], $options['text_property'], $options['primary_key'])
+                : new EntityToPropertyTransformer($em, $options['class'], $options['text_property'], $options['primary_key']);
         }
 
         $builder->addViewTransformer($transformer, true);
@@ -122,6 +125,7 @@ class Select2EntityType extends AbstractType
         $resolver->setDefaults(
             array(
                 'class' => null,
+                'entity_manager' => null,
                 'primary_key' => 'id',
                 'remote_path' => null,
                 'remote_route' => null,
