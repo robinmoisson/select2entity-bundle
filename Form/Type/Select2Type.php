@@ -4,17 +4,25 @@ namespace Tetranz\Select2Bundle\Form\Type;
 
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Routing\RouterInterface;
+use Tetranz\Select2Bundle\Form\DataTransformer\PlainTransformer;
 
 class Select2Type extends Select2AbstractType
 {
     public function __construct(Registry $doctrine, RouterInterface $router, $minimumInputLength, $pageLimit, $allowClear, $delay, $language, $cache)
     {
         return parent::__construct($doctrine, $router, $minimumInputLength, $pageLimit, $allowClear, $delay, $language, $cache);
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $transformer = new PlainTransformer();
+        $builder->addViewTransformer($transformer, true);
     }
 
     public function finishView(FormView $view, FormInterface $form, array $options)
