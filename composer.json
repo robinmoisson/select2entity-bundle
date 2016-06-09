@@ -1,5 +1,5 @@
 {
-    "name": "robinmoisson/select2entity-bundle",
+    "name": "robinmoisson/select2-bundle",
     "type": "symfony-bundle",
     "description": "A Symfony2 bundle that integrates Select2 as a drop-in replacement for a standard entity field on a Symfony form.",
     "keywords": ["symfony","select2", "typeahead","autocomplete"],
@@ -20,9 +20,9 @@
         "doctrine/orm": ">=2.4"
     },
     "autoload": {
-        "psr-0": { "Tetranz\\Select2EntityBundle": "" }
+        "psr-0": { "Tetranz\\Select2Bundle": "" }
     },
-    "target-dir": "Tetranz/Select2EntityBundle",
+    "target-dir": "Tetranz/Select2Bundle",
     "extra": {
         "branch-alias": {
         }

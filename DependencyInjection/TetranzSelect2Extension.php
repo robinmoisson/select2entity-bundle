@@ -1,6 +1,6 @@
 <?php
 
-namespace Tetranz\Select2EntityBundle\DependencyInjection;
+namespace Tetranz\Select2Bundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class TetranzSelect2EntityExtension extends Extension
+class TetranzSelect2Extension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -26,7 +26,7 @@ class TetranzSelect2EntityExtension extends Extension
         $varNames = ['minimum_input_length', 'page_limit', 'allow_clear', 'delay', 'language', 'cache'];
 
         foreach($varNames as $varName) {
-            $container->setParameter("tetranz_select2_entity.$varName", $config[$varName]);
+            $container->setParameter("tetranz_select2.$varName", $config[$varName]);
         }
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tetranz\Select2EntityBundle\Form\DataTransformer;
+namespace Tetranz\Select2Bundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Exception\DriverException;
@@ -13,7 +13,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Data transformer for multiple mode (i.e., multiple = true)
  *
  * Class EntitiesToPropertyTransformer
- * @package Tetranz\Select2EntityBundle\Form\DataTransformer
+ * @package Tetranz\Select2Bundle\Form\DataTransformer
  */
 class EntitiesToPropertyTransformer implements DataTransformerInterface
 {

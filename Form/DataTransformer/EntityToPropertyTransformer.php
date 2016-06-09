@@ -1,6 +1,6 @@
 <?php
 
-namespace Tetranz\Select2EntityBundle\Form\DataTransformer;
+namespace Tetranz\Select2Bundle\Form\DataTransformer;
 
 use Doctrine\DBAL\Exception\DriverException;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
  * Data transformer for single mode (i.e., multiple = false)
  *
  * Class EntityToPropertyTransformer
- * @package Tetranz\Select2EntityBundle\Form\DataTransformer
+ * @package Tetranz\Select2Bundle\Form\DataTransformer
  */
 class EntityToPropertyTransformer implements DataTransformerInterface
 {
