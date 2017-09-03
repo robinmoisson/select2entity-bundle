@@ -13,7 +13,7 @@ It is currently **not maintened** (though always open to PR I guess). Feel free 
 
 Below is the README from tetranz/select2entity-bundle at time of fork.
 
-##Introduction
+## Introduction
 
 This is a Symfony2 bundle which enables the popular [Select2](https://select2.github.io) component to be used as a drop-in replacement for a standard entity field on a Symfony form.
 
@@ -25,7 +25,7 @@ The project was inspired by [lifo/typeahead-bundle](https://github.com/lifo101/t
 
 Thanks to @ismailbaskin we now have Select2 version 4 compatibility.
 
-##Screenshots
+## Screenshots
 
 This is a form with a single selection field list expanded.
 
@@ -83,7 +83,7 @@ twig:
 <script src="{{ asset('bundles/tetranzselect2entity/js/select2entity.js') }}"></script>
 ```
 
-##How to use##
+## How to use
 
 The following is for Symfony 3. The latest version works on both Symfony 2 and Symfony 3 but see https://github.com/tetranz/select2entity-bundle/tree/v2.1 for Symfony 2 configuration and use.
 
@@ -113,7 +113,7 @@ Put this at the top of the file with the form type class:
 use Tetranz\Select2EntityBundle\Form\Type\Select2EntityType;
 ```
 
-##Options##
+## Options
 Defaults will be used for some if not set.
 * `class` is your entity class. Required
 * `primary_key` is the name of the property used to uniquely identify entities. Defaults to 'id'
@@ -143,7 +143,7 @@ tetranz_select2_entity:
     cache: false
 ```
 
-##AJAX Response
+## AJAX Response
 The controller should return a `JSON` array in the following format. The properties must be `id` and `text`.
 
 ```javascript
@@ -182,7 +182,7 @@ Your custom transformer and respectively your Ajax controller should return an a
 ]
 ```
 
-###Templating###
+### Templating
 
 If you need [Templating](https://select2.github.io/examples.html#templating) in Select2, you could consider the following example that shows the country flag next to each option.
 
@@ -233,7 +233,7 @@ You also will need to override the following block in your template:
 ```
 This block adds all additional data needed to the JavaScript function `select2entityAjax`, like data attribute. In this case we are passing `data-img`.
 
-##Embed Collection Forms
+## Embed Collection Forms
 If you use [Embedded Collection Forms](http://symfony.com/doc/current/cookbook/form/form_collections.html) and [data-prototype](http://symfony.com/doc/current/cookbook/form/form_collections.html#allowing-new-tags-with-the-prototype) to add new elements in your form, you will need the following JavaScript that will listen for adding an element `.select2entity`:
 ```javascript
 $('body').on('click', '[data-prototype]', function(e) {
