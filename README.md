@@ -1,7 +1,19 @@
 select2entity-bundle
 ====================
 
-##Introduction##
+This repo extends tetranz/select2entity-bundle, which allow easy use of a select2 dropdown in a Symfony form.
+
+It adds the following abilities:
+
+- specify the entity_manager, in case the project has multiple possible connections
+- infinite loading on the select2 drpodown
+- bootstrap-themed select2
+
+It is currently **not maintened** (though always open to PR I guess). Feel free to use it however you see fit, or look at the last commits if you want inspiration to replicate the functionnality :)
+
+Below is the README from tetranz/select2entity-bundle at time of fork.
+
+##Introduction
 
 This is a Symfony2 bundle which enables the popular [Select2](https://select2.github.io) component to be used as a drop-in replacement for a standard entity field on a Symfony form.
 
@@ -13,7 +25,7 @@ The project was inspired by [lifo/typeahead-bundle](https://github.com/lifo101/t
 
 Thanks to @ismailbaskin we now have Select2 version 4 compatibility.
 
-##Screenshots##
+##Screenshots
 
 This is a form with a single selection field list expanded.
 
@@ -23,7 +35,7 @@ This is a form with a multiple selection field list expanded.
 
 ![Multiple select example](Resources/doc/img/multi.png)
 
-##Installation##
+##Installation
 
 Select2 must be installed and working first. I hope to setup a demo site but my setup is basically [BraincraftedBootstrapBundle](http://bootstrap.braincrafted.com) with Select2 installed for Bootstrap 3. Once the Braincrafted bundle is working, the only files I've needed to install are:
 
@@ -73,7 +85,7 @@ twig:
 
 ##How to use##
 
-The following is for Symfony 3. The latest version works on both Symfony 2 and Symfony 2 but see https://github.com/tetranz/select2entity-bundle/tree/v2.1 for Symfony 2 configuration and use.
+The following is for Symfony 3. The latest version works on both Symfony 2 and Symfony 3 but see https://github.com/tetranz/select2entity-bundle/tree/v2.1 for Symfony 2 configuration and use.
 
 Select2Entity is simple to use. In the buildForm method of a form type class, specify `Select2EntityType::class` as the type where you would otherwise use `entity:class`.
 
@@ -131,7 +143,7 @@ tetranz_select2_entity:
     cache: false
 ```
 
-##AJAX Response##
+##AJAX Response
 The controller should return a `JSON` array in the following format. The properties must be `id` and `text`.
 
 ```javascript
@@ -221,7 +233,7 @@ You also will need to override the following block in your template:
 ```
 This block adds all additional data needed to the JavaScript function `select2entityAjax`, like data attribute. In this case we are passing `data-img`.
 
-##Embed Collection Forms##
+##Embed Collection Forms
 If you use [Embedded Collection Forms](http://symfony.com/doc/current/cookbook/form/form_collections.html) and [data-prototype](http://symfony.com/doc/current/cookbook/form/form_collections.html#allowing-new-tags-with-the-prototype) to add new elements in your form, you will need the following JavaScript that will listen for adding an element `.select2entity`:
 ```javascript
 $('body').on('click', '[data-prototype]', function(e) {
