@@ -6,7 +6,16 @@ This repo extends tetranz/select2entity-bundle, which allows easy use of a selec
 It adds the following abilities:
 
 - specify the entity_manager, in case the project has multiple possible connections
-- infinite loading on the select2 drpodown
+
+        ->add(
+            'entity',
+            Select2EntityType::class,
+            array(
+                'class' => 'AppBundle\Entity\Custom\Reading',
+                'entity_manager' => 'custom_em',
+                ...
+
+- infinite loading on the select2 dropdown
 - bootstrap-themed select2
 
 It is currently **not maintened** (though always open to PR I guess) and not actively synced with tetranz/select2entity-bundle. Feel free to use it however you see fit, or look at the last commits if you want inspiration to replicate the functionnality :)
